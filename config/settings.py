@@ -17,7 +17,8 @@ environ.Env.read_env()
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = env('SECRET_KEY')
+# SECRET_KEY = env('SECRET_KEY')
+SECRET_KEY = 'django-insecure-zg0y9b9a@7@n1&rf!88y93ietqsiu7&3%=qw5mfwy7bxj$7a&g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
@@ -80,9 +81,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
+# DATABASES = {
+#     'default': dj_database_url.parse(env('DATABASE'))
+# }
+
 
 DATABASES = {
-    'default': dj_database_url.parse(env('DATABASE'))
+    'default': dj_database_url.parse('postgres://logging_db_user:JYSqH6JyxYZ6KidBCMvqiFgLTjauwbf8@dpg-clmv7d7feb2c73edgi3g-a.ohio-postgres.render.com/logging_db')
 }
 
 
