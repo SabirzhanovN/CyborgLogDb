@@ -23,7 +23,7 @@ SECRET_KEY = 'django-insecure-zg0y9b9a@7@n1&rf!88y93ietqsiu7&3%=qw5mfwy7bxj$7a&g
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-if socket.gethostname() == "server_name":
+if socket.gethostname() == "CyborgLog":
     DEBUG = False
     ALLOWED_HOSTS = ["www.cyborglog.onrender.com",]
 else:
