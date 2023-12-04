@@ -4,6 +4,7 @@ from pathlib import Path
 import dj_database_url
 from dotenv import load_dotenv
 import environ
+import socket
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -21,9 +22,14 @@ environ.Env.read_env()
 SECRET_KEY = 'django-insecure-zg0y9b9a@7@n1&rf!88y93ietqsiu7&3%=qw5mfwy7bxj$7a&g'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+if socket.gethostname() == "server_name":
+    DEBUG = False
+    ALLOWED_HOSTS = ["www.cyborglog.onrender.com",]
+else:
+    DEBUG = True
+    ALLOWED_HOSTS = ["localhost", "127.0.0.1", "*"]
+
 
 
 # Application definition
