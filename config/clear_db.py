@@ -10,7 +10,6 @@ def check_count_of_data():
     )
 
     data = cursor.fetchall()
-    print(len(data))
 
     return len(data)
 
