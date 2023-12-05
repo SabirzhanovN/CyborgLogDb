@@ -29,7 +29,7 @@ def replenish_verdict(request):
         query2 = connection.queries[-1]['sql']
 
         new_log = LoggingMoves.objects.create(
-            ip_address=request.META.get('REMOTE_ADDR'),
+            ip_address=request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get('HTTP_X_FORWARDED_FOR') is not None else request.META.get('REMOTE_ADDR'),
             author=user.username,
             method='UPDATE',
             sql_query=f'{query1};\n{query2};',

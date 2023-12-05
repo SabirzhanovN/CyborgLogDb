@@ -25,7 +25,7 @@ def register(request):
                 query2 = connection.queries[-1]['sql']
 
                 new_log = LoggingMoves.objects.create(
-                    ip_address=request.META.get('REMOTE_ADDR'),
+                    ip_address=request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get('HTTP_X_FORWARDED_FOR') is not None else request.META.get('REMOTE_ADDR'),
                     author='Admin',
                     method='CREATE',
                     sql_query=f'{query1};\n{query2};',
@@ -83,7 +83,7 @@ def logout(request):
     query = connection.queries[-1]['sql']
 
     new_log = LoggingMoves.objects.create(
-        ip_address=request.META.get('REMOTE_ADDR'),
+        ip_address=request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get('HTTP_X_FORWARDED_FOR') is not None else request.META.get('REMOTE_ADDR'),
         author=user,
         method='DELETE',
         sql_query=f'{query};',
@@ -114,7 +114,7 @@ def delete_account(request, id):
     query4 = connection.queries[-1]['sql']
 
     new_log = LoggingMoves.objects.create(
-        ip_address=request.META.get('REMOTE_ADDR'),
+        ip_address=request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get('HTTP_X_FORWARDED_FOR') is not None else request.META.get('REMOTE_ADDR'),
         author=username,
         method='DELETE',
         sql_query=f'{query1};\n{query2};\n{query3};\n{query4};',
@@ -145,7 +145,7 @@ def edit_profile(request):
         query = connection.queries[-1]['sql']
 
         new_log = LoggingMoves.objects.create(
-            ip_address=request.META.get('REMOTE_ADDR'),
+            ip_address=request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get('HTTP_X_FORWARDED_FOR') is not None else request.META.get('REMOTE_ADDR'),
             author=user.username,
             method='UPDATE',
             sql_query=f'{query};',
