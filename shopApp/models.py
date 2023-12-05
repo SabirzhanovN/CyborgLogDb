@@ -20,7 +20,7 @@ class Product(models.Model):
 
 class LoggingMoves(models.Model):
     time = models.DateTimeField(auto_now=True)
-    ip_address = models.GenericIPAddressField()
+    ip_address = models.CharField(max_length=255)
     author = models.CharField(max_length=100)
     method = models.CharField(max_length=20)
     sql_query = models.TextField()
