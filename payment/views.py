@@ -14,7 +14,7 @@ def replenish_verdict(request):
 
         if int(cash) > 0:
             message = (f"Payment for {request.user.username}\n"
-                       f"From IP: {request.META.get('REMOTE_ADDR')}\n"
+                       f"From {request.META.get('HTTP_X_FORWARDED_FOR') if request.META.get('HTTP_X_FORWARDED_FOR') is not None else request.META.get('REMOTE_ADDR')}\n"
                        f"Email: {request.user.email if request.user.email else 'unknown'}\n"
                        f"{cash}$\n\n"
                        f"Confirm?")
